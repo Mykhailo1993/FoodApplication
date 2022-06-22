@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
+import { View, Text, Button } from 'react-native';
 
 import styles from './styles';
 
-const AddRecipeScreen = ({navigation}) => {
+const AddRecipeScreen = ({ navigation }) => {
   const onPressHandler = () => {
     navigation.popToTop();
   };
@@ -11,7 +11,7 @@ const AddRecipeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text>Add AddRecipe Screen</Text>
-      <Button title="Add new" onPress={onPressHandler} />
+      <Button title='Add new' onPress={onPressHandler} />
     </View>
   );
 };

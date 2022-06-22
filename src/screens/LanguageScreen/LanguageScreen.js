@@ -1,14 +1,14 @@
-import React, {useEffect} from 'react';
-import {View, Text, Button, Platform} from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, Button, Platform } from 'react-native';
 
-import {useDispatch, useSelector} from 'react-redux';
-import {completed} from '../../store/features/onboarding/onboardingSlice';
+import { useDispatch } from 'react-redux';
 import messaging from '@react-native-firebase/messaging';
 import PushNotification from 'react-native-push-notification';
+import { completed } from '../../store/features/onboarding/onboardingSlice';
 
 import styles from './styles';
 
-const LanguageScreen = ({navigation}) => {
+const LanguageScreen = ({ navigation }) => {
   useEffect(() => {
     if (Platform.OS === 'android') {
       PushNotification.createChannel(
@@ -17,8 +17,8 @@ const LanguageScreen = ({navigation}) => {
           channelName: 'My',
           playSound: true,
         },
-        a => {
-          console.log(a);
+        () => {
+          // console.log(a);
         },
       );
     }
@@ -28,10 +28,10 @@ const LanguageScreen = ({navigation}) => {
     let unsubscribe;
     if (Platform.OS === 'android') {
       unsubscribe = messaging().onMessage(async remoteMessage => {
-        console.log(
-          'A new FCM message arrived!',
-          JSON.stringify(remoteMessage),
-        );
+        // console.log(
+        //   'A new FCM message arrived!',
+        //   JSON.stringify(remoteMessage),
+        // );
         if (Platform.OS === 'android') {
           PushNotification.localNotification({
             title: remoteMessage.title,
@@ -47,9 +47,9 @@ const LanguageScreen = ({navigation}) => {
   }, []);
 
   const dispatch = useDispatch();
-  const count = useSelector(state => state);
-  console.log('HERE');
-  console.log(count);
+  // const count = useSelector(state => state);
+  // console.log('HERE');
+  // console.log(count);
   const onPressHandler = () => {
     navigation.navigate('WelcomeScreen');
   };
@@ -57,9 +57,9 @@ const LanguageScreen = ({navigation}) => {
   return (
     <View style={styles.continaer}>
       <Text>LanguageScreen</Text>
-      <Button title="Go to Welcome Screen" onPress={onPressHandler} />
+      <Button title='Go to Welcome Screen' onPress={onPressHandler} />
       <Button
-        title="Completed"
+        title='Completed'
         onPress={() => {
           dispatch(completed());
         }}

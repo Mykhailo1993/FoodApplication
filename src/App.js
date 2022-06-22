@@ -8,23 +8,21 @@
 
 import React from 'react';
 
-import {Provider} from 'react-redux';
-import {PersistGate} from 'reduxjs-toolkit-persist/integration/react';
-import store, {persistor} from './store';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'reduxjs-toolkit-persist/integration/react';
+import { NavigationContainer } from '@react-navigation/native';
+import store, { persistor } from './store';
 
-import {NavigationContainer} from '@react-navigation/native';
 import AppNavigation from './navigation';
 
-const App = () => {
-  return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <NavigationContainer>
-          <AppNavigation />
-        </NavigationContainer>
-      </PersistGate>
-    </Provider>
-  );
-};
+const App = () => (
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <NavigationContainer>
+        <AppNavigation />
+      </NavigationContainer>
+    </PersistGate>
+  </Provider>
+);
 
 export default App;
