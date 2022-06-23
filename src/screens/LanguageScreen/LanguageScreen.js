@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
-import { View, Text, Button, Platform } from 'react-native';
+import { View, Platform } from 'react-native';
 
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import messaging from '@react-native-firebase/messaging';
 import PushNotification from 'react-native-push-notification';
-import { completed } from '../../store/features/onboarding/onboardingSlice';
+// import { completed } from '../../store/features/onboarding/onboardingSlice';
 
 import styles from './styles';
+import LanguageCard from '../../components/LanguageCard';
+import images from '../../assets/images/images';
 
-const LanguageScreen = ({ navigation }) => {
+const LanguageScreen = () => {
   useEffect(() => {
     if (Platform.OS === 'android') {
       PushNotification.createChannel(
@@ -46,24 +48,45 @@ const LanguageScreen = ({ navigation }) => {
     return unsubscribe;
   }, []);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const count = useSelector(state => state);
   // console.log('HERE');
   // console.log(count);
-  const onPressHandler = () => {
-    navigation.navigate('WelcomeScreen');
+  // const onPressHandler = () => {
+  //   navigation.navigate('WelcomeScreen');
+  // };
+
+  const onPresCard = () => {
+    // console.log('click');
   };
 
+  const countries = [
+    { countryFlag: images.flagOfEngland, countryName: 'England' },
+    { countryFlag: images.flagOfItaly, countryName: 'Italiano' },
+    { countryFlag: images.flagOfSpain, countryName: 'Espanol' },
+    { countryFlag: images.flagOfUkraine, countryName: 'Ukraine' },
+    // { countryFlag: images.flagOfGermany, countryName: 'Germany' },
+    // { countryFlag: images.flagOfFrance, countryName: 'France' },
+  ];
+
   return (
-    <View style={styles.continaer}>
-      <Text>LanguageScreen</Text>
+    <View style={styles.container}>
+      {/* <Text>LanguageScreen</Text>
       <Button title='Go to Welcome Screen' onPress={onPressHandler} />
       <Button
         title='Completed'
         onPress={() => {
           dispatch(completed());
         }}
-      />
+      /> */}
+      {countries.map(item => (
+        <LanguageCard
+          // key={item.toString()}
+          countryFlag={item.countryFlag}
+          countryName={item.countryName}
+          onPresCard={onPresCard}
+        />
+      ))}
     </View>
   );
 };
