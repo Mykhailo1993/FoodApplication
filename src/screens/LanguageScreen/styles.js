@@ -1,7 +1,14 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+  safeAreaContainer: { flex: 1 },
+  container: {
+    flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    paddingTop: 5,
+    justifyContent: 'center',
+  },
 });
 
 export default styles;
