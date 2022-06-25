@@ -7,9 +7,10 @@ import messaging from '@react-native-firebase/messaging';
 import PushNotification from 'react-native-push-notification';
 import { completed } from '../../store/features/onboarding/onboardingSlice';
 
-import styles from './styles';
 import LanguageCard from '../../components/LanguageCard';
-import images from '../../assets/images/images';
+
+import countriesData from '../../data/countriesData';
+import styles from './styles';
 
 const LanguageScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -21,9 +22,7 @@ const LanguageScreen = ({ navigation }) => {
           channelName: 'My',
           playSound: true,
         },
-        () => {
-          // console.log(a);
-        },
+        () => {},
       );
     }
   }, []);
@@ -51,19 +50,10 @@ const LanguageScreen = ({ navigation }) => {
     navigation.navigate('WelcomeScreen', { code });
   };
 
-  const countries = [
-    { countryFlag: images.flagOfEngland, countryName: 'England', code: 'gb' },
-    { countryFlag: images.flagOfUkraine, countryName: 'Ukraine', code: 'ua' },
-    { countryFlag: images.flagOfItaly, countryName: 'Italiano', code: 'it' },
-    { countryFlag: images.flagOfSpain, countryName: 'Espanol', code: 'es' },
-    { countryFlag: images.flagOfGermany, countryName: 'Germany', code: 'de' },
-    { countryFlag: images.flagOfFrance, countryName: 'France', code: 'fr' },
-  ];
-
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <View style={styles.container}>
-        {countries.map(item => (
+        {countriesData.map(item => (
           <LanguageCard
             key={item.code}
             countryFlag={item.countryFlag}
